@@ -45,6 +45,23 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 ## Documentation des Fonctions
 
+### Enquêtes
+
+- **`addSurvey(survey)`** : Ajoute une nouvelle enquête à la base de données.
+
+  - _Paramètre :_ `{ name: string, questions: array, createdBy: Employee }`
+
+- **`getSurveyByName(name)`** : Récupère les détails d'une enquête à partir de son nom.
+
+  - _Paramètre :_ `{ name: string }`
+
+- **`updateSurvey(id, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
+
+  - _Paramètre :_ `{ id: string, updatedSurvey: { name: string, questions: array, createdBy: Employee } }`
+
+- **`deleteSurvey(id)`** : Supprime une enquête de la base de données par son ID.
+  - _Paramètre :_ `{ id: string }`
+
 ### Questions
 
 - **`addQuestion(question)`** : Ajoute une nouvelle question à la base de données.
@@ -57,7 +74,7 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 - **`updateQuestion(id, updatedQuestion)`** : Met à jour les informations d'une question existante.
 
-  - _Paramètre :_ `{ id: string, updatedQuestion: { title?: string, type?: string, answers?: array } }`
+  - _Paramètre :_ `{ id: string, updatedQuestion: { title: string, type: string, answers: array } }`
 
 - **`deleteQuestion(id)`** : Supprime une question de la base de données par son ID.
   - _Paramètre :_ `{ id: string }`
@@ -77,40 +94,6 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
   - _Paramètre :_ `{ id: string, updatedAnswer: { title: string } }`
 
 - **`deleteAnswer(id)`** : Supprime une réponse de la base de données par son ID.
-  - _Paramètre :_ `{ id: string }`
-
-### Enquêtes
-
-- **`addSurvey(survey)`** : Ajoute une nouvelle enquête à la base de données.
-
-  - _Paramètre :_ `{ name: string, questions: array, createdBy: string }`
-
-- **`getSurveyByName(name)`** : Récupère les détails d'une enquête à partir de son nom.
-
-  - _Paramètre :_ `{ name: string }`
-
-- **`updateSurvey(id, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
-
-  - _Paramètre :_ `{ id: string, updatedSurvey: { name?: string, questions?: array, createdBy?: string } }`
-
-- **`deleteSurvey(id)`** : Supprime une enquête de la base de données par son ID.
-  - _Paramètre :_ `{ id: string }`
-
-### Enquêtes
-
-- **`addSurvey(survey)`** : Ajoute une nouvelle enquête à la base de données.
-
-  - _Paramètre :_ `{ name: string, questions: array, createdBy: string }`
-
-- **`getSurveyByName(name)`** : Récupère les détails d'une enquête à partir de son nom.
-
-  - _Paramètre :_ `{ name: string }`
-
-- **`updateSurvey(id, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
-
-  - _Paramètre :_ `{ id: string, updatedSurvey: { name?: string, questions?: array, createdBy?: string } }`
-
-- **`deleteSurvey(id)`** : Supprime une enquête de la base de données par son ID.
   - _Paramètre :_ `{ id: string }`
 
 ## Utilisation

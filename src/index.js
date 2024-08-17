@@ -22,79 +22,67 @@ const {
   deleteSurvey,
 } = require("./surveyModule");
 
+const surveyData = {
+  name: "Satisfaction client",
+  description: "Évaluez notre service",
+  creationDate: new Date().toISOString(),
+  createdBy: "Admin",
+};
+
+const questionData = {
+  surveyId: 1,
+  text: "Comment évaluez-vous notre service ?",
+  creationDate: new Date().toISOString(),
+  createdBy: "Admin",
+};
+
+const answerData = {
+  questionId: 1,
+  text: "Très satisfait",
+  creationDate: new Date().toISOString(),
+  createdBy: "Admin",
+};
+
 async function main() {
   try {
-    await addQuestion({
-      questionId: 2,
-      title: "Quel est votre produit préféré ?",
-      type: "singleChoice",
-      answers: [],
+    await addSurvey(surveyData);
+
+    await getSurveys();
+
+    await getSurveyByName("Satisfaction client");
+
+    await updateSurvey(1, {
+      name: "Satisfaction client - mise à jour",
+      description: "Mise à jour de l'évaluation",
     });
 
-    const questions = await getQuestions();
-    console.log("Questions:", questions);
+    await deleteSurvey(1);
 
-    const question = await getQuestionById(2);
-    if (question) {
-      console.log("Question obtenue:", question);
-    }
+    await addQuestion(questionData);
+
+    await getQuestions();
+
+    await getQuestionById(1);
 
     await updateQuestion(1, {
-      title: "Quel produit préférez-vous ?",
-      type: "multipleChoice",
+      text: "Comment évaluez-vous notre service ? (Mise à jour)",
     });
-    
-    await deleteQuestion(2);
 
-    await addAnswer({
-      answerId: 1,
-      title: "Produit A",
+    await deleteQuestion(1);
+
+    await addAnswer(answerData);
+
+    await getAnswers();
+
+    await getAnswerById(1);
+
+    await updateAnswer(7, {
+      text: "Satisfait (Mise à jour)",
     });
-    console.log("Nouvelle réponse ajoutée avec succée");
 
-    const answers = await getAnswers();
-    console.log("Réponses:", answers);
-
-    const answer = await getAnswerById(1);
-    if (answer) {
-      console.log("Réponse obtenue:", answer);
-    }
-
-    const answerUpdated = await updateAnswer(33, {
-      title: "Produit AB",
-    });
-    if (answerUpdated) {
-      console.log("Réponse mise à jour");
-    }
-
-    await deleteAnswer(14);
-    await addSurvey({
-      name: "Sondage sur les préférences de produits",
-      questions: [],
-      createdBy: "admin",
-    });
-    console.log("Nouveau sondage ajouté avec succée");
-
-    const surveys = await getSurveys();
-    console.log("Sondages:", surveys);
-
-    const survey = await getSurveyByName(
-      "Sondage sur les préférences de produits"
-    );
-    if (survey) {
-      console.log("Sondage obtenu:", survey);
-    }
-
-    const surveyUpdated = await updateSurvey(survey.surveyId, {
-      name: "Sondage sur les préférences de produits (mis à jour)",
-    });
-    if (surveyUpdated) {
-      console.log("Sondage mis à jour");
-    }
-
-    await deleteSurvey(survey.surveyId);
+    await deleteAnswer(10);
   } catch (error) {
-    console.error("Erreur lors de l'exécution:", error);
+    console.error("Erreur :", error.message);
   }
 }
 

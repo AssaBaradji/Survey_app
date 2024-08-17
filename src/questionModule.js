@@ -14,7 +14,9 @@ async function getNextId(collectionName, db) {
 async function getQuestions() {
   const { db } = await connectToDB();
   try {
-    return await db.collection("questions").find().toArray();
+    const questions = await db.collection("questions").find().toArray();
+    console.log("Questions:", questions);
+    return questions;
   } finally {
     await closeDB();
   }
@@ -23,11 +25,15 @@ async function getQuestions() {
 async function getQuestionById(id) {
   const { db } = await connectToDB();
   try {
-    if (!id) {
-      return await db.collection("questions").findOne({ questionId: id });
+    const question = await db
+      .collection("questions")
+      .findOne({ questionId: id });
+    if (question) {
+      console.log("Question obtenue:", question);
     } else {
-      console.log("id n'existe pas");
+      console.log(`Question avec l'ID "${id}" non trouvée.`);
     }
+    return question;
   } finally {
     await closeDB();
   }
@@ -36,9 +42,20 @@ async function getQuestionById(id) {
 async function addQuestion(question) {
   const { db } = await connectToDB();
   try {
+    if (
+      !question.surveyId ||
+      !question.text ||
+      !question.creationDate ||
+      !question.createdBy
+    ) {
+      console.log(
+        "Erreur: Les propriétés surveyId, text, creationDate, et createdBy sont obligatoires."
+      );
+      return;
+    }
     question.questionId = await getNextId("questions", db);
     const result = await db.collection("questions").insertOne(question);
-    console.log("'Nouvelle question ajoutée avec succées'");
+    console.log("Nouvelle question ajoutée avec succès");
     return result.insertedId;
   } finally {
     await closeDB();
@@ -52,18 +69,20 @@ async function updateQuestion(id, updatedQuestion) {
       .collection("questions")
       .findOne({ questionId: id });
     if (!existingQuestion) {
-      console.log("Question non trouvé.");
-      return false;
+      console.log("ID non trouvé. Erreur de mise à jour.");
+      return;
     }
 
     const result = await db
       .collection("questions")
       .updateOne({ questionId: id }, { $set: updatedQuestion });
     if (result.modifiedCount === 0) {
-      console.log("Echec de la mis à jour de la question.");
-      return false;
+      console.log(
+        "Erreur de mise à jour: Aucune modification n'a été effectuée."
+      );
+    } else {
+      console.log("Question mise à jour avec succès");
     }
-    return true;
   } finally {
     await closeDB();
   }
@@ -76,13 +95,17 @@ async function deleteQuestion(id) {
       .collection("questions")
       .findOne({ questionId: id });
     if (!existingQuestion) {
-      console.log("Question non trouvé.");
+      console.log("ID non trouvé. Erreur de suppression.");
+      return;
+    }
+
+    const result = await db
+      .collection("questions")
+      .deleteOne({ questionId: id });
+    if (result.deletedCount === 0) {
+      console.log("Erreur de suppression: Aucune suppression effectuée.");
     } else {
-      const result = await db
-        .collection("questions")
-        .deleteOne({ questionId: id });
       console.log("Question supprimée avec succès");
-      return result.deletedCount > 0;
     }
   } finally {
     await closeDB();
