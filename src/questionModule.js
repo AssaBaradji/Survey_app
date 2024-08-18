@@ -43,13 +43,13 @@ async function addQuestion(question) {
   const { db } = await connectToDB();
   try {
     if (
+      !question.questionId ||
       !question.surveyId ||
-      !question.text ||
-      !question.creationDate ||
-      !question.createdBy
+      !question.title ||
+      !question.option
     ) {
       console.log(
-        "Erreur: Les propriétés surveyId, text, creationDate, et createdBy sont obligatoires."
+        "Erreur: Les propriétés: questionId, surveyId, title, type, option."
       );
       return;
     }

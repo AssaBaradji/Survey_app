@@ -1,4 +1,12 @@
 const {
+  addSurvey,
+  getSurveys,
+  getSurveyByName,
+  updateSurvey,
+  deleteSurvey,
+} = require("./surveyModule");
+
+const {
   addQuestion,
   getQuestions,
   getQuestionById,
@@ -14,33 +22,29 @@ const {
   deleteAnswer,
 } = require("./answerModule");
 
-const {
-  addSurvey,
-  getSurveys,
-  getSurveyByName,
-  updateSurvey,
-  deleteSurvey,
-} = require("./surveyModule");
-
 const surveyData = {
+  surveyId: 1,
   name: "Satisfaction client",
   description: "Évaluez notre service",
   creationDate: new Date().toISOString(),
-  createdBy: "Admin",
+  createdBy: {
+    employeeName: "Jane Smith",
+    employeeRole: "Responsable du service client",
+  },
 };
 
 const questionData = {
+  questionId: 1,
   surveyId: 1,
-  text: "Comment évaluez-vous notre service ?",
-  creationDate: new Date().toISOString(),
-  createdBy: "Admin",
+  title: "Comment évalueriez-vous notre service ?",
+  type: "rating",
+  option: 4,
 };
 
 const answerData = {
+  answerId: 1,
   questionId: 1,
-  text: "Très satisfait",
-  creationDate: new Date().toISOString(),
-  createdBy: "Admin",
+  title: "Très satisfait",
 };
 
 async function main() {

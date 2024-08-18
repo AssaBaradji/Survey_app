@@ -18,14 +18,14 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 1. **Clonez le repository :**
 
    ```bash
-   git clone https://github.com/AssaBaradji/Survey_app.git
+   git clone https://github.com/AssaBaradji/Survey_app1.git
 
    ```
 
 2. **Accédez au dossier du projet :**
 
    ```bash
-   cd survey_app
+   cd survey_app1
    ```
 
 3. **Installez les dépendances :**
@@ -49,15 +49,13 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 - **`addSurvey(survey)`** : Ajoute une nouvelle enquête à la base de données.
 
-  - _Paramètre :_ `{ name: string, questions: array, createdBy: Employee }`
+  - _Paramètre :_ `{ name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string}`
 
-- **`getSurveyByName(name)`** : Récupère les détails d'une enquête à partir de son nom.
-
-  - _Paramètre :_ `{ name: string }`
+- **`getSurveyByName()`** : liste les détails des tous les enquêtes.
 
 - **`updateSurvey(id, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
 
-  - _Paramètre :_ `{ id: string, updatedSurvey: { name: string, questions: array, createdBy: Employee } }`
+  - _Paramètre :_ `( id: string, updatedSurvey: {surveyId: int, name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string} )`
 
 - **`deleteSurvey(id)`** : Supprime une enquête de la base de données par son ID.
   - _Paramètre :_ `{ id: string }`
@@ -66,15 +64,13 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 - **`addQuestion(question)`** : Ajoute une nouvelle question à la base de données.
 
-  - _Paramètre :_ `{ title: string, type: string, answers: array }`
+  - _Paramètre :_ `{ title: string, type: string, surveyId: string }`
 
-- **`getQuestionById(id)`** : Récupère les détails d'une question à partir de son ID.
-
-  - _Paramètre :_ `{ id: string }`
+- **`getQuestionById()`** : Récupère les détails de toutes les questions.
 
 - **`updateQuestion(id, updatedQuestion)`** : Met à jour les informations d'une question existante.
 
-  - _Paramètre :_ `{ id: string, updatedQuestion: { title: string, type: string, answers: array } }`
+  - _Paramètre :_ `( id: string, updatedQuestion: { title: string, type: string, surveyId: string })`
 
 - **`deleteQuestion(id)`** : Supprime une question de la base de données par son ID.
   - _Paramètre :_ `{ id: string }`
@@ -83,15 +79,13 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 - **`addAnswer(answer)`** : Ajoute une nouvelle réponse à la base de données.
 
-  - _Paramètre :_ `{ title: string }`
+  - _Paramètre :_ `{ title: string  idQuestion: string}`
 
-- **`getAnswerById(id)`** : Récupère les détails d'une réponse à partir de son ID.
-
-  - _Paramètre :_ `{ id: string }`
+- **`getAnswerById()`** : Récupère les détails de toutes les réponse.
 
 - **`updateAnswer(id, updatedAnswer)`** : Met à jour les informations d'une réponse existante.
 
-  - _Paramètre :_ `{ id: string, updatedAnswer: { title: string } }`
+  - _Paramètre :_ `( id: string, updatedAnswer: { title: string, idQueston: string })`
 
 - **`deleteAnswer(id)`** : Supprime une réponse de la base de données par son ID.
   - _Paramètre :_ `{ id: string }`
@@ -106,4 +100,4 @@ npm start
 
 ## Auteur
 
-- Assa Baradji[https://github.com/AssaBaradji/Survey_app.git].
+- (Assa Baradji)[https://github.com/AssaBaradji/Survey_app.git].

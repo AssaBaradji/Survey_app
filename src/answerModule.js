@@ -40,15 +40,8 @@ async function getAnswerById(id) {
 async function addAnswer(answer) {
   const { db } = await connectToDB();
   try {
-    if (
-      !answer.questionId ||
-      !answer.text ||
-      !answer.creationDate ||
-      !answer.createdBy
-    ) {
-      console.log(
-        "Erreur: Les propriétés questionId, text, creationDate, et createdBy sont obligatoires."
-      );
+    if (!answer.questionId || !answer.questionId || !answer.title) {
+      console.log("Erreur: Les propriétés answerId, questionId, title.");
       return;
     }
     answer.answerId = await getNextId("answers", db);
