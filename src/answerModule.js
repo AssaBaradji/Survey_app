@@ -36,18 +36,36 @@ async function getAnswerById(id) {
     await closeDB();
   }
 }
-
 async function addAnswer(answer) {
   const { db } = await connectToDB();
   try {
-    if (!answer.questionId || !answer.questionId || !answer.title) {
-      console.log("Erreur: Les propriétés answerId, questionId, title.");
+    if (!answer.answerId || !answer.questionId || !answer.title) {
+      console.log(
+        "Erreur: Les propriétés answerId, questionId, et title sont requises."
+      );
       return;
     }
+
+    const questionExists = await db
+      .collection("questions")
+      .findOne({ questionId: answer.questionId });
+    if (!questionExists) {
+      console.log(
+        `Erreur: Le questionId ${answer.questionId} spécifié n'existe pas.`
+      );
+      return;
+    }
+
     answer.answerId = await getNextId("answers", db);
     const result = await db.collection("answers").insertOne(answer);
-    console.log("Nouvelle réponse ajoutée avec succès");
+    console.log(
+      `Nouvelle réponse avec l'ID ${answer.answerId} ajoutée avec succès.`
+    );
     return result.insertedId;
+  } catch (error) {
+    console.error(
+      `Erreur lors de l'ajout de la réponse avec l'ID ${answer.answerId}: ${error.message}`
+    );
   } finally {
     await closeDB();
   }

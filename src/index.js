@@ -38,7 +38,7 @@ const questionData = {
   surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
   type: "rating",
-  option: 4,
+  options: [1, 2, 3, 4, 5],
 };
 
 const answerData = {
@@ -60,7 +60,7 @@ async function main() {
       description: "Mise à jour de l'évaluation",
     });
 
-    await deleteSurvey(1);
+    await deleteSurvey(2);
 
     await addQuestion(questionData);
 
@@ -72,7 +72,7 @@ async function main() {
       text: "Comment évaluez-vous notre service ? (Mise à jour)",
     });
 
-    await deleteQuestion(1);
+    await deleteQuestion(2);
 
     await addAnswer(answerData);
 
@@ -80,11 +80,11 @@ async function main() {
 
     await getAnswerById(1);
 
-    await updateAnswer(7, {
+    await updateAnswer(1, {
       text: "Satisfait (Mise à jour)",
     });
 
-    await deleteAnswer(10);
+    await deleteAnswer(1);
   } catch (error) {
     console.error("Erreur :", error.message);
   }

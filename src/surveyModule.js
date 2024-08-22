@@ -67,20 +67,19 @@ async function updateSurvey(id, updatedSurvey) {
       .collection("surveys")
       .findOne({ surveyId: id });
     if (!existingSurvey) {
-      console.log("ID non trouvé. Erreur de mise à jour.");
+      console.log(`ID ${id} non trouvé. Erreur de mise à jour.`);
       return;
     }
 
     const result = await db
       .collection("surveys")
       .updateOne({ surveyId: id }, { $set: updatedSurvey });
-    if (result.modifiedCount === 0) {
-      console.log(
-        "Erreur de mise à jour: Aucune modification n'a été effectuée."
-      );
-    } else {
-      console.log("Sondage mis à jour avec succès");
-    }
+
+    console.log(`Sondage avec l'ID ${id} mis à jour avec succès.`);
+  } catch (error) {
+    console.error(
+      `Erreur lors de la mise à jour du sondage avec l'ID ${id}: ${error.message}`
+    );
   } finally {
     await closeDB();
   }

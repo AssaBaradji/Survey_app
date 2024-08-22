@@ -17,22 +17,22 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 1. **Clonez le repository :**
 
-   ```bash
+```bash
    git clone https://github.com/AssaBaradji/Survey_app1.git
 
-   ```
+```
 
 2. **Accédez au dossier du projet :**
-
-   ```bash
-   cd survey_app1
-   ```
+ ```bash
+   cd survey_app
+ ```
 
 3. **Installez les dépendances :**
 
-   ```bash
+ ```bash
    npm install
-   ```
+  ```
+
 
 4. **Configurez la base de données :**
 
@@ -55,40 +55,40 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 - **`updateSurvey(id, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
 
-  - _Paramètre :_ `( id: string, updatedSurvey: {surveyId: int, name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string} )`
+  - _Paramètre :_ `( id: int, updatedSurvey: {surveyId: int, name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string} )`
 
 - **`deleteSurvey(id)`** : Supprime une enquête de la base de données par son ID.
-  - _Paramètre :_ `{ id: string }`
+  - _Paramètre :_ `{ id: int }`
 
 ### Questions
 
 - **`addQuestion(question)`** : Ajoute une nouvelle question à la base de données.
 
-  - _Paramètre :_ `{ title: string, type: string, surveyId: string }`
+  - _Paramètre :_ `{ title: string, type: string, surveyId: int }`
 
 - **`getQuestionById()`** : Récupère les détails de toutes les questions.
 
 - **`updateQuestion(id, updatedQuestion)`** : Met à jour les informations d'une question existante.
 
-  - _Paramètre :_ `( id: string, updatedQuestion: { title: string, type: string, surveyId: string })`
+  - _Paramètre :_ `( id: int, updatedQuestion: { title: string, type: string, surveyId: int })`
 
 - **`deleteQuestion(id)`** : Supprime une question de la base de données par son ID.
-  - _Paramètre :_ `{ id: string }`
+  - _Paramètre :_ `{ id: int }`
 
 ### Réponses
 
 - **`addAnswer(answer)`** : Ajoute une nouvelle réponse à la base de données.
 
-  - _Paramètre :_ `{ title: string  idQuestion: string}`
+  - _Paramètre :_ `{ title: string  idQuestion: int}`
 
 - **`getAnswerById()`** : Récupère les détails de toutes les réponse.
 
 - **`updateAnswer(id, updatedAnswer)`** : Met à jour les informations d'une réponse existante.
 
-  - _Paramètre :_ `( id: string, updatedAnswer: { title: string, idQueston: string })`
+  - _Paramètre :_ `( id: int, updatedAnswer: { title: string, idQueston: int })`
 
 - **`deleteAnswer(id)`** : Supprime une réponse de la base de données par son ID.
-  - _Paramètre :_ `{ id: string }`
+  - _Paramètre :_ `{ id: int }`
 
 ## Utilisation
 

@@ -46,17 +46,35 @@ async function addQuestion(question) {
       !question.questionId ||
       !question.surveyId ||
       !question.title ||
-      !question.option
+      !question.type ||
+      !Array.isArray(question.options)
     ) {
       console.log(
-        "Erreur: Les propriétés: questionId, surveyId, title, type, option."
+        "Erreur: Les propriétés questionId, surveyId, title, type, et options sont requises."
       );
       return;
     }
+
+    const surveyExists = await db
+      .collection("surveys")
+      .findOne({ surveyId: question.surveyId });
+    if (!surveyExists) {
+      console.log(
+        `Erreur: Le surveyId ${question.surveyId} spécifié n'existe pas.`
+      );
+      return;
+    }
+
     question.questionId = await getNextId("questions", db);
     const result = await db.collection("questions").insertOne(question);
-    console.log("Nouvelle question ajoutée avec succès");
+    console.log(
+      `Nouvelle question avec l'ID ${question.questionId} ajoutée avec succès.`
+    );
     return result.insertedId;
+  } catch (error) {
+    console.error(
+      `Erreur lors de l'ajout de la question avec l'ID ${question.questionId}: ${error.message}`
+    );
   } finally {
     await closeDB();
   }
@@ -69,20 +87,19 @@ async function updateQuestion(id, updatedQuestion) {
       .collection("questions")
       .findOne({ questionId: id });
     if (!existingQuestion) {
-      console.log("ID non trouvé. Erreur de mise à jour.");
+      console.log(`ID ${id} non trouvé. Erreur de mise à jour.`);
       return;
     }
 
-    const result = await db
+    await db
       .collection("questions")
       .updateOne({ questionId: id }, { $set: updatedQuestion });
-    if (result.modifiedCount === 0) {
-      console.log(
-        "Erreur de mise à jour: Aucune modification n'a été effectuée."
-      );
-    } else {
-      console.log("Question mise à jour avec succès");
-    }
+
+    console.log(`Question avec l'ID ${id} mise à jour avec succès.`);
+  } catch (error) {
+    console.error(
+      `Erreur lors de la mise à jour de la question avec l'ID ${id}: ${error.message}`
+    );
   } finally {
     await closeDB();
   }
