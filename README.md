@@ -18,7 +18,7 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 1. **Clonez le repository :**
 
 ```bash
-   git clone https://github.com/AssaBaradji/Survey_app1.git
+   git clone https://github.com/AssaBaradji/Survey_app.git
 
 ```
 
@@ -100,4 +100,4 @@ npm start
 
 ## Auteur
 
-- (Assa Baradji)[https://github.com/AssaBaradji/Survey_app1.git].
+- Assa Baradji https://github.com/AssaBaradji/Survey_app.git
