@@ -38,7 +38,7 @@ const questionData = {
   surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
   type: "rating",
-  options: [1, 2, 3, 4, 5],
+  options: {minValue: 1, maxValue: 5, step: 1},
 };
 
 const answerData = {
@@ -69,7 +69,7 @@ async function main() {
     await getQuestionById(1);
 
     await updateQuestion(1, {
-      text: "Comment évaluez-vous notre service ? (Mise à jour)",
+      title: "Comment évaluez-vous notre service ? (Mise à jour)",
     });
 
     await deleteQuestion(2);
@@ -81,7 +81,7 @@ async function main() {
     await getAnswerById(1);
 
     await updateAnswer(1, {
-      text: "Satisfait (Mise à jour)",
+      title: "Satisfait (Mise à jour)",
     });
 
     await deleteAnswer(1);

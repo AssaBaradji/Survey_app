@@ -47,7 +47,7 @@ async function addQuestion(question) {
       !question.surveyId ||
       !question.title ||
       !question.type ||
-      !Array.isArray(question.options)
+      typeof question.options !== "object"
     ) {
       console.log(
         "Erreur: Les propriétés questionId, surveyId, title, type, et options sont requises."

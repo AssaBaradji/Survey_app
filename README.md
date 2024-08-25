@@ -51,7 +51,8 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
   - _Paramètre :_ `{surveyId:int, name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string}`
 
-- **`getSurveyByName()`** : liste les détails des tous les enquêtes.
+- **`getSurveys()`** : Liste les détails des tous les enquêtes.
+- **`getSurveyByName(name: string)`** : Récupère  une enquête par son nom et l'affiche.
 
 - **`updateSurvey(surveyId, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
 
@@ -66,11 +67,12 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
   - _Paramètre :_ `{questionId:int, title: string, type: string, options:[int], surveyId: int }`
 
-- **`getQuestionById()`** : Récupère les détails de toutes les questions.
+- **`getQuestions()`** : Liste les détails des toutes les questions.
+- **`getQuestionById(questionId: int)`** : Récupère  une question par son id et l'affiche.
 
 - **`updateQuestion(questionId, updatedQuestion)`** : Met à jour les informations d'une question existante.
 
-  - _Paramètre :_ `( questionId: int, updatedQuestion: { title: string, type: string, options:[int], surveyId: int })`
+  - _Paramètre :_ `( questionId: int, updatedQuestion: { title: string, type: string, options:{minValue:int, maxValue: int, step: int}, surveyId: int })`
 
 - **`deleteQuestion(questionId)`** : Supprime une question de la base de données par son ID.
   - _Paramètre :_ `{ questionId: int }`
@@ -81,7 +83,8 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
   - _Paramètre :_ `{answerId:int, title: string  idQuestion: int}`
 
-- **`getAnswerById()`** : Récupère les détails de toutes les réponse.
+- **`getAnswers()`** :  Liste les détails des toutes les reponses.
+- **`getAnswerById(answerId: int)`** : Récupère  une reponse par son id et l'affiche.
 
 - **`updateAnswer(answerId, updatedAnswer)`** : Met à jour les informations d'une réponse existante.
 
