@@ -24,7 +24,7 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 2. **Accédez au dossier du projet :**
  ```bash
-   cd survey_app
+   cd Survey_app
  ```
 
 3. **Installez les dépendances :**
@@ -49,46 +49,46 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 - **`addSurvey(survey)`** : Ajoute une nouvelle enquête à la base de données.
 
-  - _Paramètre :_ `{ name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string}`
+  - _Paramètre :_ `{surveyId:int, name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string}`
 
 - **`getSurveyByName()`** : liste les détails des tous les enquêtes.
 
-- **`updateSurvey(id, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
+- **`updateSurvey(surveyId, updatedSurvey)`** : Met à jour les informations d'une enquête existante.
 
-  - _Paramètre :_ `( id: int, updatedSurvey: {surveyId: int, name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string} )`
+  - _Paramètre :_ `( surveyId: int, updatedSurvey: {name: string, description: string, createdAt: date}, createdBy:{employeeName: string, employeeRole: string} )`
 
-- **`deleteSurvey(id)`** : Supprime une enquête de la base de données par son ID.
-  - _Paramètre :_ `{ id: int }`
+- **`deleteSurvey(surveyId)`** : Supprime une enquête de la base de données par son ID.
+  - _Paramètre :_ `{ surveyId: int }`
 
 ### Questions
 
 - **`addQuestion(question)`** : Ajoute une nouvelle question à la base de données.
 
-  - _Paramètre :_ `{ title: string, type: string, surveyId: int }`
+  - _Paramètre :_ `{questionId:int, title: string, type: string, options:[int], surveyId: int }`
 
 - **`getQuestionById()`** : Récupère les détails de toutes les questions.
 
-- **`updateQuestion(id, updatedQuestion)`** : Met à jour les informations d'une question existante.
+- **`updateQuestion(questionId, updatedQuestion)`** : Met à jour les informations d'une question existante.
 
-  - _Paramètre :_ `( id: int, updatedQuestion: { title: string, type: string, surveyId: int })`
+  - _Paramètre :_ `( questionId: int, updatedQuestion: { title: string, type: string, options:[int], surveyId: int })`
 
-- **`deleteQuestion(id)`** : Supprime une question de la base de données par son ID.
-  - _Paramètre :_ `{ id: int }`
+- **`deleteQuestion(questionId)`** : Supprime une question de la base de données par son ID.
+  - _Paramètre :_ `{ questionId: int }`
 
 ### Réponses
 
 - **`addAnswer(answer)`** : Ajoute une nouvelle réponse à la base de données.
 
-  - _Paramètre :_ `{ title: string  idQuestion: int}`
+  - _Paramètre :_ `{answerId:int, title: string  idQuestion: int}`
 
 - **`getAnswerById()`** : Récupère les détails de toutes les réponse.
 
-- **`updateAnswer(id, updatedAnswer)`** : Met à jour les informations d'une réponse existante.
+- **`updateAnswer(answerId, updatedAnswer)`** : Met à jour les informations d'une réponse existante.
 
-  - _Paramètre :_ `( id: int, updatedAnswer: { title: string, idQueston: int })`
+  - _Paramètre :_ `( answerId: int, updatedAnswer: { title: string, idQueston: int })`
 
-- **`deleteAnswer(id)`** : Supprime une réponse de la base de données par son ID.
-  - _Paramètre :_ `{ id: int }`
+- **`deleteAnswer(answerId)`** : Supprime une réponse de la base de données par son ID.
+  - _Paramètre :_ `{ answerId: int }`
 
 ## Utilisation
 
@@ -100,4 +100,4 @@ npm start
 
 ## Auteur
 
-- Assa Baradji https://github.com/AssaBaradji/Survey_app.git
+- [Assa Baradji](https://github.com/AssaBaradji)
