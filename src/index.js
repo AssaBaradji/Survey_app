@@ -26,7 +26,7 @@ const surveyData = {
   surveyId: 1,
   name: "Satisfaction client",
   description: "Évaluez notre service",
-  creationDate: new Date().toISOString(),
+  createdAt: "2024-07-25T08:00:00Z",
   createdBy: {
     employeeName: "Jane Smith",
     employeeRole: "Responsable du service client",

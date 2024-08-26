@@ -41,11 +41,11 @@ async function addSurvey(survey) {
     if (
       !survey.name ||
       !survey.description ||
-      !survey.creationDate ||
+      !survey.createdAt ||
       !survey.createdBy
     ) {
       console.log(
-        "Erreur: Les propriétés name, description, creationDate, et createdBy sont obligatoires."
+        "Erreur: Les propriétés name, description, createdAt, et createdBy sont obligatoires."
       );
       return;
     }
