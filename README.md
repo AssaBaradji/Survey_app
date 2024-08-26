@@ -65,7 +65,7 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 
 - **`addQuestion(question)`** : Ajoute une nouvelle question à la base de données.
 
-  - _Paramètre :_ `{questionId:int, title: string, type: string, options:[int], surveyId: int }`
+  - _Paramètre :_ `{questionId:int, title: string, type: string, options:{minValue:int, maxValue: int, step: int}, surveyId: int }`
 
 - **`getQuestions()`** : Liste les détails des toutes les questions.
 - **`getQuestionById(questionId: int)`** : Récupère  une question par son id et l'affiche.

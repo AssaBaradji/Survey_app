@@ -16,7 +16,6 @@ async function getQuestions() {
   try {
     const questions = await db.collection("questions").find().toArray();
     console.log("Questions:", questions);
-    return questions;
   } finally {
     await closeDB();
   }
@@ -33,7 +32,6 @@ async function getQuestionById(id) {
     } else {
       console.log(`Question avec l'ID "${id}" non trouvée.`);
     }
-    return question;
   } finally {
     await closeDB();
   }

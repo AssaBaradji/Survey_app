@@ -16,22 +16,20 @@ async function getSurveys() {
   try {
     const surveys = await db.collection("surveys").find().toArray();
     console.log("Sondages:", surveys);
-    return surveys;
   } finally {
     await closeDB();
   }
 }
 
-async function getSurveyByName(name) {
+async function getSurveyById(id) {
   const { db } = await connectToDB();
   try {
-    const survey = await db.collection("surveys").findOne({ name });
+    const survey = await db.collection("surveys").findOne({ surveyId: id });
     if (survey) {
       console.log("Sondage obtenu:", survey);
     } else {
-      console.log(`Sondage avec le nom "${name}" non trouvé.`);
+      console.log(`Sondage avec l'Id "${id}" non trouvé.`);
     }
-    return survey;
   } finally {
     await closeDB();
   }
@@ -109,7 +107,7 @@ async function deleteSurvey(id) {
 
 module.exports = {
   getSurveys,
-  getSurveyByName,
+  getSurveyById,
   addSurvey,
   updateSurvey,
   deleteSurvey,

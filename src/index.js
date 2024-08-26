@@ -1,7 +1,7 @@
 const {
   addSurvey,
   getSurveys,
-  getSurveyByName,
+  getSurveyById,
   updateSurvey,
   deleteSurvey,
 } = require("./surveyModule");
@@ -53,7 +53,7 @@ async function main() {
 
     await getSurveys();
 
-    await getSurveyByName("Satisfaction client");
+    await getSurveyById(1);
 
     await updateSurvey(1, {
       name: "Satisfaction client - mise à jour",
